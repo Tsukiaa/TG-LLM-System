@@ -1,0 +1,62 @@
+/* 确保父容器占满整个视口高度 */
+.page-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    padding-top: 0px;
+    margin-top:0px
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    min-height: 96vh;
+    margin-top:0px
+}
+/* 左侧输入区域样式 */
+.left-column {
+    background: linear-gradient(to right, #647C9C 0%, #FFF2CC 100%); /* 线性渐变 */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 96vh;
+    width: 25%;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* 右侧展示结果区域样式 */
+.right-column {
+    min-height: 96vh;
+    width: 75%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: radial-gradient(circle, #647C9C, #FFF2CC);
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* 检索按钮样式 */
+.search-button {
+    margin-top: 20px;
+    width: 80%;
+    height: 40px;
+    background-color: #647C9C;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+/* 检索按钮悬停样式 */
+.search-button:hover {
+    background-color: #DB91A2;
+}
+
+/* 检索按钮点击样式 */
+.search-button:active {
+    background-color: #DB91A2;
+}
+

@@ -1,0 +1,42 @@
+.welcome-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    text-align: center;
+    background: radial-gradient(circle, #74A5FF, #9DCFC3, #FFF2CC);  /* 径向渐变 */
+}
+
+/* 检索按钮样式 */
+.enter-button {
+    margin-top: 0px;
+    width: 200px; /* 固定宽度 */
+    height: 35px;
+    background-color: #647C9C;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+/* 检索按钮悬停样式 */
+.enter-button:hover {
+    background-color: #DB91A2;
+}
+
+/* 检索按钮点击样式 */
+.enter-button:active {
+    background-color: #DB91A2;
+}
+.image-div {
+    text-align: center; /* 图片居中 */
+    margin-top: 5px;
+}
+
+.welcome-image {
+    width: 100%; /* 调整图片大小 */
+    max-width: 1000px;
+}
+
