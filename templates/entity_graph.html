@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>实体-图谱检索</title>
+    <link rel="stylesheet" href="/static/css/entity_graph.css">
+</head>
+<body>
+    <div class="page-container">
+        <div class="content-row">
+            <!-- 左侧输入区域 -->
+            <div class="left-column">
+                <input type="text" id="queryInput" placeholder="请输入你要查询的实体" class="el-input">
+                <button id="searchButton" class="search-button">检索</button>
+            </div>
+
+            <!-- 右侧展示结果区域 -->
+            <div class="right-column">
+                <!-- 用于显示图谱的容器 -->
+                <div id="graphContainer"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 引入 Vis.js 库 -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.js"></script>
+    <script src="/static/js/extra/jquery-3.2.1.min.js"></script>
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+    <script src="/static/js/add/entity_graph.js"></script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>时序知识图谱推理</title>
+    <link rel="stylesheet" href="/static/css/inference.css">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script defer src="/static/js/add/inference.js"></script>
+</head>
+<body>
+    <div class="content">
+        <div class="row">
+            <!-- 左边部分：头实体和关系输入 -->
+            <div class="column left-column">
+                <div class="input-group">
+                    <label class="pclass">头实体:</label>
+                    <input id="headEntity" type="text" placeholder="请输入头实体">
+                </div>
+                <div class="input-group">
+                    <label class="pclass">关&nbsp;&nbsp;&nbsp;系:</label>
+                    <input id="relationShip" type="text" placeholder="请输入关系">
+                </div>
+            </div>
+
+            <!-- 右边部分：尾实体和时间输入 -->
+            <div class="column right-column">
+                <div class="input-group">
+                    <label class="pclass">尾实体:</label>
+                    <input id="tailEntity" type="text" placeholder="请输入尾实体">
+                </div>
+                <div class="input-group">
+                    <label class="pclass">时&nbsp;&nbsp;&nbsp;间:</label>
+                    <input id="time" type="text" placeholder="请输入时间">
+                </div>
+            </div>
+        </div>
+
+        <!-- 按钮行 -->
+        <div class="row">
+            <div class="column one-column">
+                <button id="inferRelationBtn" class="primary-button">关系补全</button>
+            </div>
+            <div class="column two-column">
+                <button id="inferHeadEntityBtn" class="primary-button">头实体补全</button>
+            </div>
+            <div class="column tree-column">
+                <button id="inferTailEntityBtn" class="primary-button">尾实体补全</button>
+            </div>
+        </div>
+
+        <!-- 推理结果 -->
+        <div id="result-container" class="result-container" style="display: none;">
+            <div class="card">
+                <div class="card-header">补全结果</div>
+                <div id="result"></div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

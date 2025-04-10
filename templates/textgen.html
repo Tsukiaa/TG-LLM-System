@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>时序文本生成</title>
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <link rel="stylesheet" href="/static/css/textgen.css">
+</head>
+<body>
+    <div id="app">
+        <div class="container">
+            <!-- 左边部分：输入实体和检索片段按钮 -->
+            <div class="left-column">
+                <input type="text" id="startEntity" placeholder="请输入感兴趣的实体">
+                <button class="search-button" id="searchBtn">检索片段</button>
+                <button class="gen-button" id="generateBtn" disabled>文本生成</button>
+            </div>
+
+            <!-- 右边部分：片段选择和文本生成按钮 -->
+            <div class="right-column">
+                <div id="fragmentsContainer" class="fragment-container"></div>
+                <div id="generatedTextContainer" class="hidden">
+                    <h4>生成的文本</h4>
+                    <p id="generatedText"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="/static/js/extra/jquery-3.2.1.min.js"></script>
+    <script src="/static/js/add/textgen.js"></script>
+</body>
+</html>
