@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>时序问题推理平台</title>
+  <link rel="stylesheet" href="/static/css/main_layout.css">
+</head>
+<body>
+  <div id="app">
+      <!-- 顶部标题 -->
+        <div class="header-title">
+            <h1 onclick="resetPage()">面向情报领域的大模型时序推理系统</h1>
+            <button class="toggle-btn" onclick="toggleScenarioIntro()" style="margin-left:20px">收起/展开应用场景介绍</button>
+        </div>
+    <!-- 应用场景介绍模块 -->
+    <div class="scenario-intro">
+        <h2>应用场景介绍：在<span class="highlight">情报分析</span>任务中，理解<span class="highlight">政治人物在不同时点的态度</span>与<span class="highlight">冲突演变</span>至关重要。然而，当前的大语言模型由于<span class="highlight">缺乏时序知识的注入，容易产生“时间幻觉”</span>——即产生缺乏逻辑性和一致性的答案。为此，我们致力于<span class="highlight">缓解大模型</span>在处理此类<span class="highlight">时序推理</span>任务中的<span class="highlight">时间感知缺失</span>问题。</h2>
+        <p>
+            在情报分析领域，许多政治人物的关键情报都具有明显的<em>时间属性</em>，如：“<em>2023年12月7日，Mitch McConnell 与 Chuck Schumer 进行了会谈。</em>”、“<em>2023年10月15日，Kamala Harris 公然反对了 Ron DeSantis 的移民政策。</em>”。
+            然而，<em>大语言模型常因缺乏明确的时序知识</em>，无法正确掌握事实的时间信息，从而在推理时间相关的问题时产生所谓的“<em>时间幻觉</em>”。
+        </p>
+        <p>
+            本系统围绕此痛点，构建了“面向情报领域的大模型时序推理系统”，通过引入三项关键技术，有效增强了大模型的时序推理能力：
+        </p>
+        <ol>
+            <li>
+                <strong>时序知识图谱补全（第二章）</strong>：基于初步构建的情报领域时序知识图谱，我们分别建模事实的局部与全局演化模式，完成情报领域时序图谱的实体与关系补全，构建完备的时序知识底座。
+            </li>
+            <li>
+                <strong>时序知识图谱文本生成（第三章）</strong>：基于补全的情报时序知识图谱中的每个时序片段，我们通过双编码策略和对比学习的思想，将结构化时序片段转化为自然语言，促进大模型理解和使用时序知识。
+            </li>
+            <li>
+                <strong>大模型时序推理（第四章）</strong>：基于上述两个技术得到的时序知识库和开源实时知识，我们构造基于CoT的Prompt微调模型，实现准确的时序问题推理，缓解“时间幻觉”。
+            </li>
+        </ol>
+        <!-- 新增：图片和总述 -->
+        <img src="/static/images/技术路线总结.png" alt="系统概览图" style="width: 60%; margin-bottom: 5px; display: block; margin: 0 auto;">
+
+        <h2>创新点概述</h2>
+        <p>
+            我们通过引入<span class="highlight">领域时序知识图谱</span>、<span class="highlight">时序图谱文本生成</span>与<span class="highlight">多源知识增强的推理方法</span>，实现了大模型的<span class="highlight">时序知识注入</span>，使其具备处理复杂时序问题的能力，缓解了“<span class="highlight">时间幻觉</span>”问题。
+        </p>
+        <ol>
+            <li>
+                <strong>时序知识图谱补全：</strong>
+                为了填补时序知识图谱中的缺失事实，我们提出了一种基于局部和全局演化模式的时序知识图谱补全方法。通过动态子图采样建模局部演化模式，并结合全局历史向量和时间衰减函数，完成全局演化模式建模，从而提高了时序知识图谱的完整性。
+            </li>
+            <li>
+                <strong>时序知识图谱文本生成：</strong>
+                为了将时序知识图谱转化为大语言模型可以理解的时序文本，我们提出了一种基于双编码对比学习的时序知识图谱文本生成方法。该方法结合了图结构信息和上下文语义信息，使用对比学习融合两种信息，从而生成高质量的时序文本，为大模型提供易于理解的时序信息。
+            </li>
+            <li>
+                <strong>大模型时序推理：</strong>
+                为了增强大语言模型在时序推理任务中的能力，我们提出了一种基于多源时序知识增强的大模型时序推理方法。通过引入开源网站上的实时常识性文本和上述生成的高质量领域时序文本，来设计基于CoT的Prompt微调模型，实现了时序知识的注入，提升了大模型的时序推理能力，缓解了“时间幻觉”问题。
+            </li>
+        </ol>
+        <p>
+            以下将展示我们方法在<span class="highlight">推理回答政治人物不同时点态度关系</span>方面的效果，并与未微调模型对比，突出<span class="highlight">时序知识注入</span>的重要性。
+        </p>
+    </div>
+    <div class="container">
+            <!-- 左边部分：输入实体和检索片段按钮 -->
+            <div class="left-column">
+                <textarea id="question" placeholder="请输入情报领域时序问题"></textarea>
+                <button class="infer-button" id="inferButton">推理</button>
+                <button class="infer-button" id="inferButton2">未微调模型推理</button>
+                <div class="menu-container">
+                    <div class="text-describe">辅助技术__<text class="text-describe2">缓解大语言模型在情报领域中的时间幻觉问题</text></div>
+                    <div class="menu-item" onclick="jump_function_inference()">情报时序知识图谱补全效果</div>
+                    <div class="menu-item">
+                        <span class="menu-title">情报时序知识库</span>
+                        <div class="submenu">
+                            <div class="submenu-item" onclick="jump_function_entity()">实体-图谱检索</div>
+                            <div class="submenu-item" onclick="jump_function_full()">完整-图谱检索</div>
+                        </div>
+                    </div>
+                    <div class="menu-item" onclick="jump_function_textgen()">情报时序文本生成效果</div>
+                </div>
+
+            </div>
+
+            <!-- 右边部分：片段选择和文本生成按钮 -->
+            <div class="right-column">
+                <div class="inference-wrapper">
+                    <div id="inferenceResult" class="inference-container">
+                        <text>使用我们方法微调后模型推理结果&nbsp;&nbsp;&nbsp;&nbsp;</text>
+                        <button class="toggle-button2" onclick="toggleResult('inferenceTextList')">收起</button>
+                        <div id="inferenceTextList"></div>
+                    </div>
+                    <div id="inferenceResult2" class="inference-container2">
+                        <text>未微调模型推理结果&nbsp;&nbsp;&nbsp;&nbsp;</text>
+                        <button class="toggle-button2" onclick="toggleResult('inferenceTextList2')">收起</button>
+                        <div id="inferenceTextList2"></div>
+                    </div>
+                </div>
+                <div id="content">
+                    <iframe class="content-iframe" style="width: 100%; height: 620px;" src="" frameborder="0"  scrolling="no"></iframe>
+                </div>
+            </div>
+    </div>
+  </div>
+  <script src="/static/js/extra/jquery-3.2.1.min.js"></script>
+  <script src="/static/js/add/main_layout.js"></script>
+</body>
+</html>
